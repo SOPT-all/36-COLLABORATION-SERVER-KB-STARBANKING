@@ -1,18 +1,9 @@
 package org.sopt36th.seminar.domain.user.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import org.sopt36th.seminar.common.entity.BaseEntity;
 
 @Entity
-public class User {
-    @Id
-    private Long id;
+public class User extends BaseEntity {
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }
