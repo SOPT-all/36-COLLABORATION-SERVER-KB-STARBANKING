@@ -1,6 +1,14 @@
 package org.sopt36th.seminar.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 import org.sopt36th.seminar.domain.enums.ContractState;
 
