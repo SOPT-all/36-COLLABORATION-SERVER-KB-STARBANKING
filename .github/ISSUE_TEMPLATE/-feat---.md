@@ -1,6 +1,6 @@
 ---
-name: "[Feat/#] "
-about: "[Type/#이슈번호] "
+name: "[Feat/] "
+about: "[Type/이슈 내용] "
 title: ''
 labels: ''
 assignees: ''
