@@ -1,7 +1,7 @@
 ---
 name: "[Feat/] "
 about: "[Type/이슈 내용] "
-title: ''
+title: "[Feat/] "
 labels: ''
 assignees: ''
 
