@@ -1,4 +1,4 @@
-package org.sopt36th.seminar.domain.saving.domain;
+package org.sopt36th.seminar.domain;
 
 import jakarta.persistence.Entity;
 import org.sopt36th.seminar.common.entity.BaseEntity;
