@@ -17,11 +17,11 @@ public class Deposit extends BaseEntity {
 
     private LocalDate date;
 
-    private Integer afterDeposit;
+    private int afterDeposit;
 
-    private Integer payment;
+    private int payment;
 
-    private Integer count;
+    private int count;
 
     private Double appliedRate;
 
@@ -29,8 +29,7 @@ public class Deposit extends BaseEntity {
 
     }
 
-
-    public Deposit(Contract contract, LocalDate date, Integer afterDeposit, Integer payment, Integer count, Double appliedRate) {
+    public Deposit(Contract contract, LocalDate date, int afterDeposit, int payment, int count, Double appliedRate) {
         this.contract = contract;
         this.date = date;
         this.afterDeposit = afterDeposit;
@@ -48,15 +47,15 @@ public class Deposit extends BaseEntity {
         return date;
     }
 
-    public Integer getAfterDeposit() {
+    public int getAfterDeposit() {
         return afterDeposit;
     }
 
-    public Integer getPayment() {
+    public int getPayment() {
         return payment;
     }
 
-    public Integer getCount() {
+    public int getCount() {
         return count;
     }
 

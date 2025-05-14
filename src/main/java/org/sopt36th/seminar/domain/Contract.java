@@ -36,7 +36,7 @@ public class Contract extends BaseEntity {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    private Integer totalBalance;
+    private int totalBalance;
 
     private Double totalPreferentialRate;
 
@@ -47,7 +47,7 @@ public class Contract extends BaseEntity {
 
     }
 
-    public Contract(Saving saving, User user, String account, LocalDate startDate, LocalDate endDate, Integer totalBalance, Double totalPreferentialRate, ContractState state) {
+    public Contract(Saving saving, User user, String account, LocalDate startDate, LocalDate endDate, int totalBalance, Double totalPreferentialRate, ContractState state) {
         this.saving = saving;
         this.user = user;
         this.account = account;
@@ -79,7 +79,7 @@ public class Contract extends BaseEntity {
         return endDate;
     }
 
-    public Integer getTotalBalance() {
+    public int getTotalBalance() {
         return totalBalance;
     }
 
