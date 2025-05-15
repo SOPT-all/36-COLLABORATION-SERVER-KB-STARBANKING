@@ -27,9 +27,6 @@ public class Contract extends BaseEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)
-    private List<Deposit> deposits = new ArrayList<>();
-
     @Column(length = 30, nullable = false)
     private String account;
 
