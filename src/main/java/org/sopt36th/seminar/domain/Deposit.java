@@ -1,5 +1,6 @@
 package org.sopt36th.seminar.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -15,6 +16,7 @@ public class Deposit extends BaseEntity {
     @JoinColumn(name = "contract_id", nullable = false)
     private Contract contract;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private LocalDate date;
 
     private int afterDeposit;
@@ -23,6 +25,7 @@ public class Deposit extends BaseEntity {
 
     private int count;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.00")
     private Double appliedRate;
 
     protected Deposit() {

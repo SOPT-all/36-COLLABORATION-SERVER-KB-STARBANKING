@@ -1,20 +1,18 @@
 package org.sopt36th.seminar.domain;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 import org.sopt36th.seminar.domain.enums.ContractState;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Contract extends BaseEntity {
@@ -30,11 +28,15 @@ public class Contract extends BaseEntity {
     @Column(length = 30, nullable = false)
     private String account;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private LocalDate startDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private LocalDate endDate;
 
     private int totalBalance;
 
+    @JsonFormat(shape = Shape.STRING, pattern = "0.00")
     private Double totalPreferentialRate;
 
     @Enumerated(EnumType.STRING)
