@@ -37,4 +37,24 @@ public class PreferentialRate extends BaseEntity {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
+    public Saving getSaving() {
+        return saving;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Double getRate() {
+        return rate;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
 }
