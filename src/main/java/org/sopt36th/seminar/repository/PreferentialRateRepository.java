@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface PreferentialRateRepository extends JpaRepository<PreferentialRate, Long> {
+
     List<PreferentialRate> findBySavingId(Long savingId);
 
     // 효은
