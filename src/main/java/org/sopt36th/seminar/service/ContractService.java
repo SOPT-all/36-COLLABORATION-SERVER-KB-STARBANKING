@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static org.sopt36th.seminar.common.exception.GlobalErrorCode.CONTRACT_NOT_FOUND;
-import static org.sopt36th.seminar.common.exception.GlobalErrorCode.DEPOSIT_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -44,9 +43,7 @@ public class ContractService {
     public GetContractStateResponse getContractState(Long contractId) {
         Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
-
-        Deposit deposit = depositRepository.findById(contract.getId())
-                .orElseThrow(() -> new ContractNotFoundException(DEPOSIT_NOT_FOUND.getMessage()));
+        Deposit deposit = depositRepository.findTopByContractIdOrderByCreatedAtDesc(contractId);
 
         return ContractStateMapper.toGetContractState(contract, deposit);
 
