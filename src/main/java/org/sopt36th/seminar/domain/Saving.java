@@ -3,8 +3,11 @@ package org.sopt36th.seminar.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.persistence.Entity;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Saving extends BaseEntity {
 
@@ -12,10 +15,6 @@ public class Saving extends BaseEntity {
 
     @JsonFormat(shape = Shape.STRING, pattern = "0.00")
     private Double baseRate;
-
-    protected Saving() {
-
-    }
 
     public Saving(String name, double baseRate) {
         this.name = name;

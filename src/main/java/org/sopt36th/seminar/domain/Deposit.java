@@ -5,11 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 public class Deposit extends BaseEntity {
@@ -29,10 +32,6 @@ public class Deposit extends BaseEntity {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.00")
     private Double appliedRate;
-
-    protected Deposit() {
-
-    }
 
     public Deposit(Contract contract, LocalDate date, int afterDeposit, int payment, int count, Double appliedRate) {
         this.contract = contract;
