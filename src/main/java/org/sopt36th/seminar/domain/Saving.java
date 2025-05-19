@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Saving extends BaseEntity {
@@ -19,13 +21,5 @@ public class Saving extends BaseEntity {
     public Saving(String name, double baseRate) {
         this.name = name;
         this.baseRate = baseRate;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Double getBaseRate() {
-        return baseRate;
     }
 }

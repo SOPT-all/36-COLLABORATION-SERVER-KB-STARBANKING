@@ -9,5 +9,4 @@ public class DateUtil {
         long days = ChronoUnit.DAYS.between(startDate, endDate);
         return "D-" + days;
     }
-
 }

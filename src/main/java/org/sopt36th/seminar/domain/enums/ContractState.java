@@ -1,6 +1,9 @@
 package org.sopt36th.seminar.domain.enums;
 
 
+import lombok.Getter;
+
+@Getter
 public enum ContractState {
     ACTIVE("정상"),
     INACTIVE("사용 불가");
@@ -9,9 +12,5 @@ public enum ContractState {
 
     ContractState(String state) {
         this.state = state;
-    }
-
-    public String getState() {
-        return state;
     }
 }

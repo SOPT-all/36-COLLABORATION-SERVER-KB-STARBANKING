@@ -10,12 +10,14 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 import org.sopt36th.seminar.domain.enums.ContractState;
 
 import java.time.LocalDate;
 
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Contract extends BaseEntity {
@@ -45,7 +47,8 @@ public class Contract extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ContractState state;
 
-    public Contract(Saving saving, User user, String account, LocalDate startDate, LocalDate endDate, int totalBalance, Double totalPreferentialRate, ContractState state) {
+    public Contract(Saving saving, User user, String account, LocalDate startDate, LocalDate endDate, int totalBalance,
+                    Double totalPreferentialRate, ContractState state) {
         this.saving = saving;
         this.user = user;
         this.account = account;
@@ -55,43 +58,4 @@ public class Contract extends BaseEntity {
         this.totalPreferentialRate = totalPreferentialRate;
         this.state = ContractState.ACTIVE;
     }
-
-    //getter
-    public Saving getSaving() {
-        return saving;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public int getTotalBalance() {
-        return totalBalance;
-    }
-
-    public Double getTotalPreferentialRate() {
-        return totalPreferentialRate;
-    }
-
-    public ContractState getState() {
-        return state;
-    }
-
-    //update
-    public void updateTotalBalance(int newBalance) {
-        this.totalBalance = newBalance;
-    }
-
 }
