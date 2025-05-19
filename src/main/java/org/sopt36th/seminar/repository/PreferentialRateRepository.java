@@ -2,6 +2,8 @@ package org.sopt36th.seminar.repository;
 
 import org.sopt36th.seminar.domain.PreferentialRate;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,6 +14,8 @@ public interface PreferentialRateRepository extends JpaRepository<PreferentialRa
     List<PreferentialRate> findBySavingId(Long savingId);
 
     // 효은
+    @Query("SELECT COALESCE(SUM(rate), 0.0) FROM PreferentialRate WHERE saving.id = :savingId")
+    double sumAllRates(@Param("savingId") Long savingId);
 
 
     // 소연

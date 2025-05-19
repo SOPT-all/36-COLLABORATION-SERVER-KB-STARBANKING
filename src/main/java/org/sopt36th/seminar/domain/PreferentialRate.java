@@ -5,9 +5,13 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import java.time.LocalDate;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 
+import java.time.LocalDate;
+
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class PreferentialRate extends BaseEntity {
 
@@ -26,9 +30,6 @@ public class PreferentialRate extends BaseEntity {
     @JsonFormat(shape = Shape.STRING, pattern = "yyyy.MM.dd")
     private LocalDate endDate;
 
-    protected PreferentialRate() {
-
-    }
 
     public PreferentialRate(Saving saving, String name, Double rate, LocalDate startDate, LocalDate endDate) {
         this.saving = saving;
