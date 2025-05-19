@@ -6,18 +6,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 
 import java.time.LocalDate;
 
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class PreferentialRate extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "saving_id")
-    private Saving saving;
+    @JoinColumn(name = "contract_id")
+    private Contract contract;
 
     private String name;
 
@@ -30,32 +32,11 @@ public class PreferentialRate extends BaseEntity {
     @JsonFormat(shape = Shape.STRING, pattern = "yyyy.MM.dd")
     private LocalDate endDate;
 
-
-    public PreferentialRate(Saving saving, String name, Double rate, LocalDate startDate, LocalDate endDate) {
-        this.saving = saving;
+    public PreferentialRate(Contract contract, String name, Double rate, LocalDate startDate, LocalDate endDate) {
+        this.contract = contract;
         this.name = name;
         this.rate = rate;
         this.startDate = startDate;
         this.endDate = endDate;
-    }
-
-    public Saving getSaving() {
-        return saving;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Double getRate() {
-        return rate;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
     }
 }
