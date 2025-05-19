@@ -39,6 +39,3 @@ out/
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
-
-### application.yml ###
-application.yml
