@@ -51,10 +51,13 @@ public class ContractController {
 
     // TODO 뷰4 - 계좌 이율 조회
     @GetMapping("/{account-id}/rates")
-    public ApiResponse<GetAccountRatesResponse> getAccountRates(@PathVariable("account-id") Long accountId) {
+    public ApiResponse<GetAccountRatesResponse> getAccountRates( @PathVariable("account-id") Long accountId
+    ) {
+        System.out.println("Account ID: "+accountId); // 디버그 로그
+
         return ApiResponse.ok(
                 SuccessMessage.GET_PREFERENTIAL_RATES_SUCCESS.getMessage(),
                 contractService.getAccountRates(accountId)
-        );
-    }
+            );
+}
 }
