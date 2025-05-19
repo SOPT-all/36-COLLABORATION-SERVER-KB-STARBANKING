@@ -26,12 +26,11 @@ public class ContractService {
     private final DepositRepository depositRepository;
 
     // 효은
-    public GetContractDetailResponse getContractDetail(Long savingId) {
+    public GetContractDetailResponse getContractDetail(Long contractId) {
 
-        Contract contract = contractRepository.findBySavingId(savingId)
+        Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
-        Saving saving = savingRepository.findById(contract.getSaving().getId())
-                .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
+        Saving saving = contract.getSaving();
 
         double totalPreferentialRate = preferentialRateRepository.sumAllRates(saving.getId());
         List<Deposit> deposits = depositRepository.findByContractId(contract.getId());
