@@ -12,8 +12,8 @@ import org.sopt36th.seminar.common.entity.BaseEntity;
 
 import java.time.LocalDate;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Deposit extends BaseEntity {
 
@@ -40,35 +40,5 @@ public class Deposit extends BaseEntity {
         this.payment = payment;
         this.count = count;
         this.appliedRate = appliedRate;
-    }
-
-    //getter
-    public Contract getContract() {
-        return contract;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public int getAfterDeposit() {
-        return afterDeposit;
-    }
-
-    public int getPayment() {
-        return payment;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public Double getAppliedRate() {
-        return appliedRate;
-    }
-
-    //update
-    public void updateAfterDeposit(int newBalance) {
-        this.afterDeposit = newBalance;
     }
 }
