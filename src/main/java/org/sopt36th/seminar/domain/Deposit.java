@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 
 import java.time.LocalDate;
 
+@Getter
 @Entity
 public class Deposit extends BaseEntity {
 

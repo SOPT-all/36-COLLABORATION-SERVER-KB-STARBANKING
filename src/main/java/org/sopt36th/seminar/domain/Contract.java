@@ -1,9 +1,9 @@
 package org.sopt36th.seminar.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
@@ -13,6 +13,7 @@ import org.sopt36th.seminar.common.entity.BaseEntity;
 import org.sopt36th.seminar.domain.enums.ContractState;
 
 import java.time.LocalDate;
+
 
 @Entity
 public class Contract extends BaseEntity {

@@ -7,7 +7,6 @@ import org.sopt36th.seminar.common.entity.BaseEntity;
 public class User extends BaseEntity {
 
     private String name;
-
     protected User() {
 
     }
