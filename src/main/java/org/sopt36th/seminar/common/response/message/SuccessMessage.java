@@ -2,7 +2,8 @@ package org.sopt36th.seminar.common.response.message;
 
 public enum SuccessMessage {
 
-    GET_CONTRACT_DETAIL_SUCCESS(" 거래 내역 조회에 성공했습니다.");
+    GET_CONTRACT_DETAIL_SUCCESS(" 거래 내역 조회에 성공했습니다."),
+    GET_CONTRACT_STATE_SUCCESS(" 계좌 상태 조회에 성공했습니다.");
 
     private final String message;
 
