@@ -1,8 +1,13 @@
 package org.sopt36th.seminar.service;
 
+
+import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.sopt36th.seminar.common.exception.custom.ContractNotFoundException;
+
 import org.sopt36th.seminar.domain.Contract;
+import org.sopt36th.seminar.dto.response.AccountResponse;
+import org.sopt36th.seminar.dto.response.GetAllAccountsResponse;
+import org.sopt36th.seminar.common.exception.custom.ContractNotFoundException;
 import org.sopt36th.seminar.domain.Deposit;
 import org.sopt36th.seminar.domain.Saving;
 import org.sopt36th.seminar.dto.response.GetContractDetailResponse;
@@ -12,19 +17,16 @@ import org.sopt36th.seminar.mapper.ContractStateMapper;
 import org.sopt36th.seminar.repository.ContractRepository;
 import org.sopt36th.seminar.repository.DepositRepository;
 import org.sopt36th.seminar.repository.PreferentialRateRepository;
-import org.sopt36th.seminar.repository.SavingRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 import static org.sopt36th.seminar.common.exception.GlobalErrorCode.CONTRACT_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
 public class ContractService {
+
     private final PreferentialRateRepository preferentialRateRepository;
     private final ContractRepository contractRepository;
-    private final SavingRepository savingRepository;
     private final DepositRepository depositRepository;
 
     // 효은
@@ -50,5 +52,14 @@ public class ContractService {
     }
 
     // 소연
+    public GetAllAccountsResponse getAllAccounts() {
+        List<Contract> contracts = contractRepository.findAll();
 
+        int totalAccountBalance = contracts.stream()
+                .mapToInt(Contract::getTotalBalance)
+                .sum();
+        List<AccountResponse> accountResponses = ContractMapper.toAccountResponseList(contracts);
+
+        return new GetAllAccountsResponse(totalAccountBalance, accountResponses);
+    }
 }
