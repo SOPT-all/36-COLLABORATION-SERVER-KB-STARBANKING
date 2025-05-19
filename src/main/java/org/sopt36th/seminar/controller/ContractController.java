@@ -1,7 +1,10 @@
 package org.sopt36th.seminar.controller;
 
+import org.sopt36th.seminar.common.response.ApiResponse;
+import org.sopt36th.seminar.dto.response.GetAllAccountsResponse;
 import org.sopt36th.seminar.service.ContractService;
-import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +19,10 @@ public class ContractController {
     }
 
     // TODO 뷰1 - 전체 계좌 목록 조회 => TODO 밑의 줄에 구현 후 완료되면 TODO 삭제하기!
+    @GetMapping
+    public ApiResponse<GetAllAccountsResponse> getAllAccounts(){
+        return ApiResponse.ok("전체 계좌 조회에 성공했습니다.", contractService.getAllAccounts());
+    }
 
 
     // TODO 뷰2 - 계좌 상세 정보 조회 (납입 정보 목록까지)
