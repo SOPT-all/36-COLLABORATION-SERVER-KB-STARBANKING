@@ -3,8 +3,7 @@ package org.sopt36th.seminar.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.sopt36th.seminar.common.utils.DateUtil;
-import org.sopt36th.seminar.common.utils.TimeUtil;
+
 import org.sopt36th.seminar.domain.Contract;
 import org.sopt36th.seminar.dto.response.AccountResponse;
 import org.sopt36th.seminar.dto.response.GetAllAccountsResponse;
@@ -59,17 +58,7 @@ public class ContractService {
         int totalAccountBalance = contracts.stream()
                 .mapToInt(Contract::getTotalBalance)
                 .sum();
-        List<AccountResponse> accountResponses = contracts.stream()
-                .map(contract -> new AccountResponse(
-                        contract.getId(),
-                        contract.getSaving().getName(),
-                        contract.getAccount(),
-                        TimeUtil.toFormattedTime(contract.getStartDate()),
-                        TimeUtil.toFormattedTime(contract.getEndDate()),
-                        DateUtil.toFormattedDDay(contract.getStartDate(), contract.getEndDate()),
-                        contract.getTotalBalance()
-                ))
-                .toList();
+        List<AccountResponse> accountResponses = ContractMapper.toAccountResponseList(contracts);
 
         return new GetAllAccountsResponse(totalAccountBalance, accountResponses);
     }
