@@ -13,7 +13,6 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
     List<Contract> findByUserId(Long userId);
 
     // 효은
-    Optional<Contract> findBySavingId(Long savingId);
 
 
     // 소연

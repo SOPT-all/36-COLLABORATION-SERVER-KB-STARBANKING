@@ -1,7 +1,6 @@
 package org.sopt36th.seminar.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.sopt36th.seminar.common.exception.custom.ContractNotFoundException;
 import org.sopt36th.seminar.domain.Contract;
 import org.sopt36th.seminar.domain.Deposit;
@@ -21,7 +20,6 @@ import java.util.List;
 import static org.sopt36th.seminar.common.exception.GlobalErrorCode.CONTRACT_NOT_FOUND;
 import static org.sopt36th.seminar.common.exception.GlobalErrorCode.DEPOSIT_NOT_FOUND;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ContractService {
@@ -31,14 +29,13 @@ public class ContractService {
     private final DepositRepository depositRepository;
 
     // 효은
-    public GetContractDetailResponse getContractDetail(Long accountId) {
-        Contract contract = contractRepository.findBySavingId(accountId)
+    public GetContractDetailResponse getContractDetail(Long contractId) {
+
+        Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
-        Saving saving = savingRepository.findById(contract.getSaving().getId())
-                .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
+        Saving saving = contract.getSaving();
 
         double totalPreferentialRate = preferentialRateRepository.sumAllRates(saving.getId());
-
         List<Deposit> deposits = depositRepository.findByContractId(contract.getId());
 
         return ContractMapper.toGetContractDetail(contract, saving, deposits, totalPreferentialRate);
