@@ -41,11 +41,13 @@ public class ContractService {
         return ContractMapper.toGetContractDetail(contract, saving, deposits, totalPreferentialRate);
     }
 
-    public GetContractStateResponse getContractState(Long accountId) {
-        Contract contract = contractRepository.findBySavingId(accountId)
+    public GetContractStateResponse getContractState(Long contractId) {
+        Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
+
         Deposit deposit = depositRepository.findById(contract.getId())
                 .orElseThrow(() -> new ContractNotFoundException(DEPOSIT_NOT_FOUND.getMessage()));
+
         return ContractStateMapper.toGetContractState(contract, deposit);
 
     }
