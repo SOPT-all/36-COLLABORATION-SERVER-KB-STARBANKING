@@ -11,10 +11,8 @@ import java.util.List;
 @Repository
 public interface PreferentialRateRepository extends JpaRepository<PreferentialRate, Long> {
 
-    // 효은
     @Query("SELECT COALESCE(SUM(rate), 0.0) FROM PreferentialRate WHERE contract.id = :contractId")
     double sumAllRates(@Param("contractId") Long contractId);
 
-    // 소연
     List<PreferentialRate> findAllByContractId(Long contractId);
 }

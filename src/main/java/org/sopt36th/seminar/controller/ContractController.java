@@ -23,13 +23,11 @@ public class ContractController {
         this.contractService = contractService;
     }
 
-    // TODO 뷰1 - 전체 계좌 목록 조회 => TODO 밑의 줄에 구현 후 완료되면 TODO 삭제하기!
     @GetMapping
     public ApiResponse<GetAllAccountsResponse> getAllAccounts() {
         return ApiResponse.ok(SuccessMessage.GET_ALL_CONTRACTS_SUCCESS.getMessage(), contractService.getAllAccounts());
     }
 
-    // TODO 뷰2 - 계좌 상세 정보 조회 (납입 정보 목록까지)
     @GetMapping("/{account-id}")
     public ApiResponse<GetContractDetailResponse> getContractDetail(
             @PathVariable("account-id") Long accountId
@@ -39,7 +37,6 @@ public class ContractController {
         return ApiResponse.ok(SuccessMessage.GET_CONTRACT_DETAIL_SUCCESS.getMessage(), data);
     }
 
-    // TODO 뷰3 - 계좌 상태 조회
     @GetMapping("/{account-id}/state")
     public ApiResponse<GetContractStateResponse> getContractState(
             @PathVariable("account-id") Long accountId
@@ -49,15 +46,12 @@ public class ContractController {
         return ApiResponse.ok(SuccessMessage.GET_CONTRACT_STATE_SUCCESS.getMessage(), data);
     }
 
-    // TODO 뷰4 - 계좌 이율 조회
     @GetMapping("/{account-id}/rates")
-    public ApiResponse<GetAccountRatesResponse> getAccountRates( @PathVariable("account-id") Long accountId
+    public ApiResponse<GetAccountRatesResponse> getAccountRates(@PathVariable("account-id") Long accountId
     ) {
-        System.out.println("Account ID: "+accountId); // 디버그 로그
-
         return ApiResponse.ok(
                 SuccessMessage.GET_PREFERENTIAL_RATES_SUCCESS.getMessage(),
                 contractService.getAccountRates(accountId)
-            );
-}
+        );
+    }
 }

@@ -31,7 +31,6 @@ public class ContractService {
     private final ContractRepository contractRepository;
     private final DepositRepository depositRepository;
 
-    // 효은
     public GetContractDetailResponse getContractDetail(Long contractId) {
         Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND));
@@ -51,7 +50,6 @@ public class ContractService {
         return ContractStateMapper.toGetContractState(contract, deposit);
     }
 
-    // 소연
     public GetAllAccountsResponse getAllAccounts() {
         List<Contract> contracts = contractRepository.findAll();
 

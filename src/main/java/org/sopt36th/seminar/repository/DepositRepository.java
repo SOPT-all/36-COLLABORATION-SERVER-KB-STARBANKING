@@ -11,10 +11,5 @@ public interface DepositRepository extends JpaRepository<Deposit, Long> {
 
     List<Deposit> findByContractId(Long contractId);
 
-    // 효은
     Deposit findTopByContractIdOrderByCreatedAtDesc(Long contractId);
-
-
-    // 소연
-
 }
