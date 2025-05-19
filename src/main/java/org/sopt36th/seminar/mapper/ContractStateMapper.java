@@ -12,7 +12,7 @@ public class ContractStateMapper {
         return new GetContractStateResponse(
                 deposit.getCount(),
                 contract.getState().getState(),
-                deposit.getDate().toString(),
+                TimeUtil.toFormattedTime(deposit.getDate()),
                 TimeUtil.calculateMonth(contract.getStartDate(), contract.getEndDate())
         );
     }
