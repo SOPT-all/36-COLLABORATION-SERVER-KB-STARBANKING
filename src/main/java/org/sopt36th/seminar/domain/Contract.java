@@ -1,19 +1,22 @@
 package org.sopt36th.seminar.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.sopt36th.seminar.common.entity.BaseEntity;
 import org.sopt36th.seminar.domain.enums.ContractState;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Contract extends BaseEntity {
 
@@ -41,10 +44,6 @@ public class Contract extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private ContractState state;
-
-    protected Contract() {
-
-    }
 
     public Contract(Saving saving, User user, String account, LocalDate startDate, LocalDate endDate, int totalBalance, Double totalPreferentialRate, ContractState state) {
         this.saving = saving;

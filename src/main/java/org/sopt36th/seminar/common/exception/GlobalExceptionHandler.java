@@ -1,5 +1,6 @@
 package org.sopt36th.seminar.common.exception;
 
+import org.sopt36th.seminar.common.exception.custom.ContractNotFoundException;
 import org.sopt36th.seminar.common.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,4 +36,12 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse(GlobalErrorCode.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(ContractNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleContractNotFound(ContractNotFoundException ex) {
+        ErrorResponse response = new ErrorResponse(GlobalErrorCode.CONTRACT_NOT_FOUND);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+
 }
