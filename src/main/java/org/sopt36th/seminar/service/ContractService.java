@@ -31,6 +31,17 @@ public class ContractService {
     private final ContractRepository contractRepository;
     private final DepositRepository depositRepository;
 
+    public GetAllAccountsResponse getAllAccounts() {
+        List<Contract> contracts = contractRepository.findAll();
+
+        int totalAccountBalance = contracts.stream()
+                .mapToInt(Contract::getTotalBalance)
+                .sum();
+        List<AccountResponse> accountResponses = ContractMapper.toAccountResponseList(contracts);
+
+        return new GetAllAccountsResponse(totalAccountBalance, accountResponses);
+    }
+
     public GetContractDetailResponse getContractDetail(Long contractId) {
         Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND));
@@ -48,17 +59,6 @@ public class ContractService {
         Deposit deposit = depositRepository.findTopByContractIdOrderByCreatedAtDesc(contractId);
 
         return ContractStateMapper.toGetContractState(contract, deposit);
-    }
-
-    public GetAllAccountsResponse getAllAccounts() {
-        List<Contract> contracts = contractRepository.findAll();
-
-        int totalAccountBalance = contracts.stream()
-                .mapToInt(Contract::getTotalBalance)
-                .sum();
-        List<AccountResponse> accountResponses = ContractMapper.toAccountResponseList(contracts);
-
-        return new GetAllAccountsResponse(totalAccountBalance, accountResponses);
     }
 
     public GetAccountRatesResponse getAccountRates(Long contractId) {
