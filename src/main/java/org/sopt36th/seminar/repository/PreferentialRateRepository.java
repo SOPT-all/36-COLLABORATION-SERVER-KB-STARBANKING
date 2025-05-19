@@ -1,6 +1,5 @@
 package org.sopt36th.seminar.repository;
 
-import org.sopt36th.seminar.domain.Contract;
 import org.sopt36th.seminar.domain.PreferentialRate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -5,7 +5,9 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 import org.sopt36th.seminar.domain.Contract;
+import org.sopt36th.seminar.domain.PreferentialRate;
 import org.sopt36th.seminar.dto.response.AccountResponse;
+import org.sopt36th.seminar.dto.response.GetAccountRatesResponse;
 import org.sopt36th.seminar.dto.response.GetAllAccountsResponse;
 import org.sopt36th.seminar.common.exception.custom.ContractNotFoundException;
 import org.sopt36th.seminar.domain.Deposit;
@@ -31,12 +33,11 @@ public class ContractService {
 
     // 효은
     public GetContractDetailResponse getContractDetail(Long contractId) {
-
         Contract contract = contractRepository.findById(contractId)
-                .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND));
         Saving saving = contract.getSaving();
 
-        double totalPreferentialRate = preferentialRateRepository.sumAllRates(saving.getId());
+        double totalPreferentialRate = preferentialRateRepository.sumAllRates(contract.getId());
         List<Deposit> deposits = depositRepository.findByContractId(contract.getId());
 
         return ContractMapper.toGetContractDetail(contract, saving, deposits, totalPreferentialRate);
@@ -44,11 +45,10 @@ public class ContractService {
 
     public GetContractStateResponse getContractState(Long contractId) {
         Contract contract = contractRepository.findById(contractId)
-                .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND));
         Deposit deposit = depositRepository.findTopByContractIdOrderByCreatedAtDesc(contractId);
 
         return ContractStateMapper.toGetContractState(contract, deposit);
-
     }
 
     // 소연
@@ -61,5 +61,13 @@ public class ContractService {
         List<AccountResponse> accountResponses = ContractMapper.toAccountResponseList(contracts);
 
         return new GetAllAccountsResponse(totalAccountBalance, accountResponses);
+    }
+
+    public GetAccountRatesResponse getAccountRates(Long contractId) {
+        Contract contract = contractRepository.findById(contractId)
+                .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND));
+        List<PreferentialRate> preferentialRates = preferentialRateRepository.findAllByContractId(contract.getId());
+
+        return ContractMapper.toAccountRatesResponse(contract, preferentialRates);
     }
 }
