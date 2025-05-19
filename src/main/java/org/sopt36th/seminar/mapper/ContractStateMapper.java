@@ -16,6 +16,5 @@ public class ContractStateMapper {
                 TimeUtil.calculateMonth(contract.getStartDate(), contract.getEndDate())
         );
     }
-
 }
 

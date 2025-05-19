@@ -42,6 +42,4 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse(GlobalErrorCode.CONTRACT_NOT_FOUND);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
-
-
 }
