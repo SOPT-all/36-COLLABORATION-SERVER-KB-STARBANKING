@@ -14,8 +14,9 @@ public interface PreferentialRateRepository extends JpaRepository<PreferentialRa
     List<PreferentialRate> findBySavingId(Long savingId);
 
     // 효은
-    @Query("SELECT COALESCE(SUM(pr.rate), 0.0) FROM PreferentialRate pr WHERE pr.saving.id = :savingId")
+    @Query("SELECT COALESCE(SUM(rate), 0.0) FROM PreferentialRate WHERE saving.id = :savingId")
     double sumAllRates(@Param("savingId") Long savingId);
+
 
     // 소연
 
