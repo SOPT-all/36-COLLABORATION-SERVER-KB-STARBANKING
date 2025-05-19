@@ -1,12 +1,10 @@
 package org.sopt36th.seminar.common.exception.custom;
 
 import org.sopt36th.seminar.common.exception.BusinessException;
-import org.sopt36th.seminar.common.exception.GlobalErrorCode;
-
+import org.sopt36th.seminar.common.exception.ErrorCode;
 
 public class ContractNotFoundException extends BusinessException {
-    public ContractNotFoundException(String message) {
-        super(GlobalErrorCode.CONTRACT_NOT_FOUND);
-
+    public ContractNotFoundException(ErrorCode errorcode) {
+        super(errorcode);
     }
 }
