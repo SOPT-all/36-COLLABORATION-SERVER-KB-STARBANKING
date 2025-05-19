@@ -3,6 +3,7 @@ package org.sopt36th.seminar.controller;
 import org.sopt36th.seminar.common.response.ApiResponse;
 import org.sopt36th.seminar.common.response.message.SuccessMessage;
 import org.sopt36th.seminar.dto.response.GetContractDetailResponse;
+import org.sopt36th.seminar.dto.response.GetContractStateResponse;
 import org.sopt36th.seminar.service.ContractService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +35,14 @@ public class ContractController {
 
 
     // TODO 뷰3 - 계좌 상태 조회
+    @GetMapping("/{account-id}/state")
+    public ApiResponse<GetContractStateResponse> getContractState(
+            @PathVariable("account-id") Long accountId
+    ) {
+        GetContractStateResponse data = contractService.getContractState(accountId);
 
+        return ApiResponse.ok(SuccessMessage.GET_CONTRACT_STATE_SUCCESS.getMessage(), data);
+    }
 
     // TODO 뷰4 - 계좌 이율 조회
 

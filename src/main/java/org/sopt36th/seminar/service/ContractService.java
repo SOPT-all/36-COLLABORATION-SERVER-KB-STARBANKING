@@ -7,18 +7,19 @@ import org.sopt36th.seminar.domain.Contract;
 import org.sopt36th.seminar.domain.Deposit;
 import org.sopt36th.seminar.domain.Saving;
 import org.sopt36th.seminar.dto.response.GetContractDetailResponse;
+import org.sopt36th.seminar.dto.response.GetContractStateResponse;
 import org.sopt36th.seminar.mapper.ContractMapper;
+import org.sopt36th.seminar.mapper.ContractStateMapper;
 import org.sopt36th.seminar.repository.ContractRepository;
 import org.sopt36th.seminar.repository.DepositRepository;
 import org.sopt36th.seminar.repository.PreferentialRateRepository;
 import org.sopt36th.seminar.repository.SavingRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.sopt36th.seminar.common.exception.GlobalErrorCode.CONTRACT_NOT_FOUND;
+import static org.sopt36th.seminar.common.exception.GlobalErrorCode.DEPOSIT_NOT_FOUND;
 
 @Slf4j
 @Service
@@ -31,12 +32,8 @@ public class ContractService {
 
     // 효은
     public GetContractDetailResponse getContractDetail(Long accountId) {
-
-
         Contract contract = contractRepository.findBySavingId(accountId)
                 .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
-
-
         Saving saving = savingRepository.findById(contract.getSaving().getId())
                 .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
 
@@ -45,6 +42,15 @@ public class ContractService {
         List<Deposit> deposits = depositRepository.findByContractId(contract.getId());
 
         return ContractMapper.toGetContractDetail(contract, saving, deposits, totalPreferentialRate);
+    }
+
+    public GetContractStateResponse getContractState(Long accountId) {
+        Contract contract = contractRepository.findBySavingId(accountId)
+                .orElseThrow(() -> new ContractNotFoundException(CONTRACT_NOT_FOUND.getMessage()));
+        Deposit deposit = depositRepository.findById(contract.getId())
+                .orElseThrow(() -> new ContractNotFoundException(DEPOSIT_NOT_FOUND.getMessage()));
+        return ContractStateMapper.toGetContractState(contract, deposit);
+
     }
 
     // 소연
